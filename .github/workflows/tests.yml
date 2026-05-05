@@ -27,4 +27,4 @@ jobs:
     - name: Run tests with pytest
       run: |
         cd Teste-Web
-        pytest -e -s
+        pytest -v -s
