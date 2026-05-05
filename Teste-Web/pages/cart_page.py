@@ -8,7 +8,9 @@ class CartPage(BasePage):
     _CHECKOUT_BUTTON = (By.ID, "checkout")
 
     def is_on_cart_page(self) -> bool:
-        return self.get_text(self._PAGE_TITLE) == "Your Cart"
+        # Captura o texto e remove espaços em branco extras nas bordas
+        texto_atual = self.get_text(self._PAGE_TITLE).strip()
+        return "Your Cart" in texto_atual
 
     def get_item_count(self) -> int:
         return len(self.driver.find_elements(*self._CART_ITEMS))

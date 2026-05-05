@@ -34,6 +34,7 @@ class TestPurchaseFlow:
         assert self.inventory_page.get_cart_item_count() == PRODUCTS_TO_ADD
 
         self.inventory_page.go_to_cart()
+        print(f"URL atual: {self.driver.current_url}")
         assert self.cart_page.is_on_cart_page()
         assert self.cart_page.get_item_count() == PRODUCTS_TO_ADD
 
