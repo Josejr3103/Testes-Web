@@ -7,6 +7,9 @@ from pages.checkout_page import (
     CheckoutStepTwoPage,
     CheckoutCompletePage,
 )
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
 
 VALID_USERNAME = "standard_user"
 VALID_PASSWORD = "secret_sauce"
@@ -30,7 +33,8 @@ class TestPurchaseFlow:
 
         assert self.inventory_page.is_on_inventory_page()
 
-        self.inventory_page.add_products_to_cart(PRODUCTS_TO_ADD)
+        self.inventory_page.add_products_to_cart(PRODUCTS_TO_ADD) # Certifique-se que esse método faz os 2 cliques
+        self.inventory_page.wait_for_cart_count(PRODUCTS_TO_ADD)  # Adicione este passo de espera
         assert self.inventory_page.get_cart_item_count() == PRODUCTS_TO_ADD
 
         self.inventory_page.go_to_cart()
